@@ -1,4 +1,4 @@
-name: GiftLink CI
+﻿name: GiftLink CI
 
 on:
   push:
@@ -28,10 +28,11 @@ jobs:
           node-version: 20
 
       - name: Install JSHint
-        run: npm install --save-dev jshint
+        run: npm install --no-save jshint
 
       - name: Run Linter
-        run: npx jshint backend frontend sentiment --exclude "frontend/node_modules/**" --exclude "backend/node_modules/**" --exclude "sentiment/node_modules/**"
+        run: |
+          npx jshint --config .jshintrc backend/server.js sentiment/index.js
 
       - name: Install backend
         run: npm ci

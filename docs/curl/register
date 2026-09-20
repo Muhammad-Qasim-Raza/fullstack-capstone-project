@@ -1,3 +1,7 @@
 # register
 
-Replace this placeholder with the REAL command and REAL output from your running application.
+Command:
+curl.exe -X POST http://localhost:5000/api/auth/register -H "Content-Type: application/json" --data-binary "@$env:TEMP\giftlink-register.json"
+
+Output:
+{"user":{"id":"6aafa77f754ee924e3e5cd2a","name":"Qasim Test User","email":"test123@example.com"},"token":"REDACTED"}

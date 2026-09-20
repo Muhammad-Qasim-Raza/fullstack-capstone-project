@@ -1,3 +1,7 @@
 # search_item
 
-Replace this placeholder with the REAL command and REAL output from your running application.
+Command:
+curl.exe -s "http://localhost:5000/api/search?q=Desk"
+
+Output:
+[{"_id":"6aaf9af386cebd0b8abca6d1","title":"Wooden Study Desk","category":"Furniture","description":"Wooden Study Desk available for reuse through GiftLink.","location":"Karachi","available":true,"comments":[],"createdAt":"2026-09-20T08:36:03.001Z"}]

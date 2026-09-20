@@ -1,1 +1,12 @@
-{"name":"giftlink-sentiment","version":"1.0.0","private":true,"type":"commonjs","scripts":{"start":"node index.js"},"dependencies":{"natural":"^8.1.0"}}
+{
+  "name": "giftlink-sentiment",
+  "version": "1.0.0",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "natural": "^8.1.0"
+  }
+}

@@ -1,0 +1,44 @@
+name: GiftLink CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    services:
+      mongodb:
+        image: mongo:8
+        ports: ["27017:27017"]
+        options: >-
+          --health-cmd "mongosh --eval 'db.runCommand({ ping: 1 })'"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install backend
+        run: npm ci
+        working-directory: backend
+      - name: Install frontend
+        run: npm ci
+        working-directory: frontend
+      - name: Install sentiment
+        run: npm ci
+        working-directory: sentiment
+      - name: Backend tests
+        run: npm test
+        working-directory: backend
+        env:
+          MONGODB_URI: mongodb://127.0.0.1:27017
+          DB_NAME: giftlink_test
+          JWT_SECRET: ci-test-secret
+          CLIENT_URL: http://localhost:5173
+      - name: Frontend build
+        run: npm run build
+        working-directory: frontend
